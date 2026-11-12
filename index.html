@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Discriminación e inclusión</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f4f5ff;color:#303653}
+header{background:white;padding:18px;text-align:center;color:#5368bd;font-weight:bold}
+main{max-width:900px;margin:auto;padding:25px 15px}
+section{display:none}section.active{display:block}
+.card{background:white;padding:25px;border-radius:20px;margin:15px 0;box-shadow:0 5px 20px #0000000b}
+.hero{text-align:center;padding:35px 5px}.emoji{font-size:55px}
+h1,h2{color:#5368bd}h1{font-size:clamp(30px,6vw,48px)}
+p,li{line-height:1.6}
+button{border:0;border-radius:12px;padding:13px 19px;margin:5px;background:#5368bd;color:white;font-weight:bold;font-size:15px;cursor:pointer}
+button.secondary{background:#e9ebff;color:#5368bd}
+button.answer{display:block;width:100%;text-align:left;background:#eef0ff;color:#303653;margin:10px 0;padding:16px}
+button:disabled{opacity:.6}input{width:100%;padding:14px;border:2px solid #e2e5f5;border-radius:12px;font-size:17px;margin:10px 0}
+.actions{text-align:center;margin-top:20px}.progress{height:8px;background:#e5e7f6;border-radius:20px;margin:15px 0}
+.progress div{height:8px;background:#8b68cc;border-radius:20px}.feedback{padding:15px;background:#eaf8f2;border-radius:12px;margin-top:15px}
+.rank{display:flex;justify-content:space-between;padding:14px;border-bottom:1px solid #eee}
+footer{text-align:center;color:#777;padding:25px}
+</style>
+</head>
+<body>
+<header>💙 TODOS TENEMOS UN LUGAR</header>
+<main>
+<section id="inicio" class="active">
+<div class="hero"><div class="emoji">🤝💙</div>
+<h1>Discriminación a personas con necesidades especiales</h1>
+<p>Una presentación sobre el respeto, la igualdad de derechos y las oportunidades para todas las personas.</p>
+<button onclick="ir('presentacion')">Comenzar presentación</button>
+<button class="secondary" onclick="ir('registro')">Jugar al cuestionario 🎮</button></div>
+<div class="card"><h2>¿De qué vamos a hablar?</h2>
+<p>Vamos a conocer qué situaciones de discriminación enfrentan las personas con discapacidad y por qué es importante construir una sociedad más inclusiva.</p></div>
+</section>
+
+<section id="presentacion"><div class="card">
+<p id="numero"></p><div class="progress"><div id="barra"></div></div>
+<div id="contenido"></div><div class="actions">
+<button class="secondary" onclick="anterior()">← Anterior</button>
+<button onclick="siguiente()">Siguiente →</button>
+<button class="secondary" onclick="ir('registro')">Ir al juego 🎮</button>
+</div></div></section>
+
+<section id="registro"><div class="hero"><div class="emoji">📱🎮</div>
+<h2>¡Hora de jugar!</h2><p>Escribí tu nombre y respondé las preguntas.</p></div>
+<div class="card"><label for="nombre">Tu nombre o apodo:</label>
+<input id="nombre" maxlength="24" placeholder="Escribí tu nombre">
+<button onclick="empezar()" style="width:100%">Empezar</button></div>
+<div class="actions"><button class="secondary" onclick="ir('ranking')">Ver ranking 🏆</button></div></section>
+
+<section id="juego"><div class="card">
+<p id="contador"></p><div class="progress"><div id="barraPregunta"></div></div>
+<h2 id="pregunta"></h2><div id="opciones"></div>
+<div id="resultadoPregunta" class="feedback" hidden></div>
+<button id="continuar" onclick="continuar()" hidden>Siguiente →</button>
+</div></section>
+
+<section id="final"><div class="hero"><div class="emoji">🏆✨</div>
+<h1>¡Terminaste!</h1><h2 id="mensajeFinal"></h2><p id="puntajeFinal"></p>
+<button onclick="ir('ranking')">Ver ranking de este celular</button>
+<button class="secondary" onclick="ir('registro')">Jugar otra vez</button></div></section>
+
+<section id="ranking"><div class="hero"><div class="emoji">🏆</div>
+<h1>Ranking</h1><p>Resultados guardados en este dispositivo.</p></div>
+<div class="card" id="listaRanking"></div>
+<div class="actions"><button class="secondary" onclick="ir('inicio')">Volver al inicio</button>
+<button class="secondary" onclick="borrarRanking()">Borrar resultados</button></div></section>
+</main>
+<footer>Hecho para aprender, respetar e incluir 💙</footer>
+
+<script>
+const diapositivas = [
+`<div class="emoji">💙</div><h2>1. ¿Qué significa aceptar la diversidad?</h2><p>Todas las personas tienen derecho a ser aceptadas tal como son. Cada persona es diferente y esas diferencias deben ser respetadas.</p>`,
+`<div class="emoji">♿</div><h2>2. Personas con discapacidad</h2><p>El texto explica que una discapacidad puede implicar una limitación o pérdida de habilidad para realizar determinadas actividades, como ver, oír o caminar.</p><p>Esto no significa que una persona tenga menos derechos o menos valor que otra.</p>`,
+`<div class="emoji">🚧</div><h2>3. Las barreras sociales</h2><p>Las dificultades no aparecen solamente por una discapacidad. También se producen por las barreras que existen en la sociedad y por la falta de preparación para incluir a todas las personas.</p><ul><li>Falta de accesibilidad.</li><li>Dificultades para conseguir trabajo.</li><li>Problemas para trasladarse.</li><li>Falta de integración social.</li></ul>`,
+`<div class="emoji">🌟</div><h2>4. Capacidades y posibilidades</h2><p>Las personas con discapacidad también pueden desarrollar distintas capacidades. Por ejemplo, algunas pueden aprovechar más los sentidos que tienen disponibles.</p><p>Es importante no definir a una persona solamente por sus limitaciones.</p>`,
+`<div class="emoji">🏠</div><h2>5. El impacto en las familias</h2><p>La discapacidad también puede afectar a las familias, tanto emocionalmente como económicamente.</p><p>Por eso es importante que existan apoyos y oportunidades para que las personas puedan desarrollar su vida con mayor independencia.</p>`,
+`<div class="emoji">⚖️</div><h2>6. Equiparación de oportunidades</h2><p>Significa hacer que los espacios y servicios sean accesibles para todas las personas.</p><ul><li>Vivienda y transporte.</li><li>Educación y trabajo.</li><li>Servicios sociales y sanitarios.</li><li>Cultura, deporte y recreación.</li></ul>`,
+`<div class="emoji">🤝</div><h2>7. ¿Quiénes ayudan a impulsar la inclusión?</h2><p>Las organizaciones no gubernamentales y las organizaciones que representan a las personas con discapacidad y sus familias impulsaron propuestas y medidas para mejorar sus derechos y oportunidades.</p>`,
+`<div class="emoji">🚌</div><h2>8. Una situación para reflexionar</h2><p>En el libro aparece el caso de una persona que usa muletas, sube al colectivo y cuenta que no consigue trabajo por su discapacidad. Después pide monedas.</p><p>Mariano se pregunta si darle dinero o ayudar de otra manera.</p><p>La situación nos invita a pensar cómo podemos ayudar respetando la dignidad y la autonomía de cada persona.</p>`,
+`<div class="emoji">💙</div><h2>9. Para terminar</h2><p>La inclusión no depende solamente de las personas con discapacidad. Es responsabilidad de toda la sociedad eliminar las barreras y garantizar que todos puedan participar.</p><h3>¡La diversidad nos enriquece y el respeto nos une!</h3><button onclick="ir('registro')">Jugar al cuestionario 🎮</button>`
+];
+let diapositivaActual=0;
+function ir(id){document.querySelectorAll('main section').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);if(id==='ranking')mostrarRanking()}
+function mostrarDiapositiva(){document.getElementById('contenido').innerHTML=diapositivas[diapositivaActual];document.getElementById('numero').textContent=`DIAPOSITIVA ${diapositivaActual+1} DE ${diapositivas.length}`;document.getElementById('barra').style.width=((diapositivaActual+1)/diapositivas.length*100)+'%'}
+function siguiente(){if(diapositivaActual<diapositivas.length-1){diapositivaActual++;mostrarDiapositiva()}}
+function anterior(){if(diapositivaActual>0){diapositivaActual--;mostrarDiapositiva()}}
+const preguntas=[
+{q:"¿Qué derecho tienen todas las personas?",a:["Ser aceptadas tal como son","Ser todas iguales","No participar en sociedad","Recibir siempre dinero"],c:0,e:"Todas las personas tienen derecho a ser aceptadas tal como son."},
+{q:"¿Qué puede dificultar la integración social?",a:["La amistad","Las barreras sociales","La diversidad","El respeto"],c:1,e:"Las barreras sociales y la falta de accesibilidad dificultan la integración."},
+{q:"¿Qué significa equiparación de oportunidades?",a:["Separar a las personas","Dar oportunidades a unos pocos","Hacer accesible la sociedad para todos","Evitar actividades culturales"],c:2,e:"Significa hacer accesibles los espacios y servicios para todos."},
+{q:"¿Cuál de estos ámbitos debe ser accesible?",a:["El transporte","Solo los estadios","Ninguno","Únicamente internet"],c:0,e:"El transporte es uno de los ámbitos mencionados en el texto."},
+{q:"¿Cómo puede afectar la discapacidad a las familias?",a:["Solo deportivamente","Emocional y económicamente","Nunca afecta","Solo en la escuela"],c:1,e:"El texto menciona el impacto emocional y económico."},
+{q:"¿Qué organizaciones impulsaron propuestas?",a:["Solo empresas","Clubes deportivos","ONG y organizaciones de personas con discapacidad y sus familias","Ninguna"],c:2,e:"El texto destaca a esas organizaciones."},
+{q:"¿Qué debemos hacer frente a la discriminación?",a:["Ignorarla","Respetar e incluir a las personas","Separar a las personas","Burlarnos"],c:1,e:"Debemos respetar los derechos y eliminar las barreras."},
+{q:"¿Qué es importante al ayudar a alguien?",a:["Respetar su dignidad y autonomía","Obligarlo a aceptar ayuda","Ignorarlo","Decidir siempre por esa persona"],c:0,e:"Ayudar también significa respetar las decisiones de la otra persona."}
+];
+let nombreJugador='',puntos=0,indice=0,respondida=false;
+function empezar(){nombreJugador=document.getElementById('nombre').value.trim();if(!nombreJugador){alert('Escribí tu nombre primero.');return}puntos=0;indice=0;mostrarPregunta();ir('juego')}
+function mostrarPregunta(){respondida=false;let p=preguntas[indice];document.getElementById('contador').textContent=`PREGUNTA ${indice+1} DE ${preguntas.length}`;document.getElementById('barraPregunta').style.width=((indice+1)/preguntas.length*100)+'%';document.getElementById('pregunta').textContent=p.q;document.getElementById('resultadoPregunta').hidden=true;document.getElementById('continuar').hidden=true;let opciones=document.getElementById('opciones');opciones.innerHTML='';p.a.forEach((respuesta,i)=>{let boton=document.createElement('button');boton.className='answer';boton.textContent=respuesta;boton.onclick=()=>responder(i);opciones.appendChild(boton)})}
+function responder(i){if(respondida)return;respondida=true;let p=preguntas[indice],correcto=i===p.c;if(correcto)puntos+=100;document.querySelectorAll('.answer').forEach(b=>b.disabled=true);let resultado=document.getElementById('resultadoPregunta');resultado.textContent=(correcto?'¡Correcto! +100 puntos. ':'No es correcto. ')+p.e;resultado.hidden=false;document.getElementById('continuar').hidden=false}
+function continuar(){indice++;if(indice<preguntas.length){mostrarPregunta()}else{guardarResultado();document.getElementById('mensajeFinal').textContent='¡Muy bien, '+nombreJugador+'!';document.getElementById('puntajeFinal').textContent='Conseguiste '+puntos+' de '+preguntas.length*100+' puntos.';ir('final')}}
+function obtenerResultados(){try{return JSON.parse(localStorage.getItem('rankingInclusion')||'[]')}catch(e){return []}}
+function guardarResultado(){let lista=obtenerResultados();lista.push({nombre:nombreJugador,puntos:puntos,fecha:new Date().toLocaleDateString('es-AR')});lista.sort((a,b)=>b.puntos-a.puntos);localStorage.setItem('rankingInclusion',JSON.stringify(lista.slice(0,100)))}
+function mostrarRanking(){let lista=obtenerResultados(),contenedor=document.getElementById('listaRanking');if(lista.length===0){contenedor.innerHTML='<p>Todavía no hay participantes en este celular.</p>';return}contenedor.innerHTML=lista.map((persona,i)=>`<div class="rank"><strong>${i+1}. ${escapar(persona.nombre)}</strong><strong>${persona.puntos} puntos</strong></div>`).join('')}
+function escapar(texto){return String(texto).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function borrarRanking(){if(confirm('¿Querés borrar todos los resultados de este celular?')){localStorage.removeItem('rankingInclusion');mostrarRanking()}}
+mostrarDiapositiva();
+</script>
+</body>
+</html>
