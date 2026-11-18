@@ -3,51 +3,57 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Todos tenemos un lugar 💙</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Todos tenemos un lugar | Inclusión</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 :root{
- --blue:#5368bd;
- --purple:#9271d4;
- --pink:#e9c9f5;
- --dark:#303653;
- --bg:#f5f4ff;
+ --blue:#6378ff;
+ --violet:#a17aff;
+ --pink:#edb6ef;
+ --dark:#17182e;
+ --muted:#9b9db9;
  --white:#fff;
 }
 *{box-sizing:border-box}
 body{
- margin:0;
+ margin:0;background:#101124;color:white;
  font-family:Nunito,sans-serif;
- color:var(--dark);
- background:var(--bg);
  overflow-x:hidden;
 }
 button{font-family:inherit;cursor:pointer}
-header{
- position:sticky;top:0;z-index:20;
- display:flex;justify-content:space-between;
- align-items:center;padding:14px 6%;
- background:#ffffffdf;backdrop-filter:blur(15px);
- border-bottom:1px solid #e8e6fa;
+body:before{
+ content:"";position:fixed;z-index:-1;
+ width:500px;height:500px;left:-250px;top:10%;
+ background:#5144b8;filter:blur(150px);opacity:.25;
 }
-.logo{font-weight:900;color:var(--blue);font-size:18px}
-.logo span{color:var(--purple)}
+body:after{
+ content:"";position:fixed;z-index:-1;
+ width:500px;height:500px;right:-250px;bottom:0;
+ background:#a04cae;filter:blur(150px);opacity:.2;
+}
+header{
+ height:75px;padding:0 6%;
+ display:flex;align-items:center;justify-content:space-between;
+ position:sticky;top:0;z-index:30;
+ background:#111225eF;backdrop-filter:blur(18px);
+ border-bottom:1px solid #ffffff12;
+}
+.logo{font-weight:900;letter-spacing:1px;font-size:17px}
+.logo span{color:#a995ff}
 nav{display:flex;gap:8px}
 nav button{
- border:0;background:transparent;color:var(--blue);
- padding:10px 14px;border-radius:12px;font-weight:900;
+ background:transparent;border:0;color:#c6c5e5;
+ padding:11px 14px;border-radius:12px;font-weight:900;
 }
-nav button:hover{background:#eeedff}
+nav button:hover{background:#ffffff12;color:white}
 
-main{max-width:1100px;margin:auto;padding:28px 18px 60px}
+main{max-width:1200px;margin:auto;padding:35px 20px 70px}
 section{display:none}
-section.active{display:block;animation:enter .5s ease}
-
+section.active{display:block;animation:enter .55s ease}
 @keyframes enter{
- from{opacity:0;transform:translateY(15px)}
+ from{opacity:0;transform:translateY(20px)}
  to{opacity:1;transform:translateY(0)}
 }
 @keyframes float{
@@ -55,213 +61,257 @@ section.active{display:block;animation:enter .5s ease}
  50%{transform:translateY(-12px)}
 }
 @keyframes glow{
- 0%,100%{box-shadow:0 10px 35px #7e6acb20}
- 50%{box-shadow:0 15px 45px #9271d455}
+ 0%,100%{box-shadow:0 0 20px #8871ff15}
+ 50%{box-shadow:0 0 40px #8871ff45}
 }
-@keyframes shine{
- to{background-position:200% center}
+@keyframes spin{
+ to{transform:rotate(360deg)}
 }
-
+@keyframes reveal{
+ from{opacity:0;transform:translateY(25px)}
+ to{opacity:1;transform:translateY(0)}
+}
 .btn{
- border:0;border-radius:14px;padding:14px 22px;
- font-weight:900;font-size:15px;
- background:white;color:var(--blue);
- transition:.25s;margin:4px;
+ padding:14px 22px;border:1px solid #ffffff25;
+ border-radius:14px;background:#ffffff12;color:white;
+ font-weight:900;font-size:14px;margin:4px;
+ transition:.25s;
 }
-.btn:hover{transform:translateY(-4px)}
-.primary{
- color:white;
- background:linear-gradient(110deg,var(--blue),var(--purple));
+.btn:hover{transform:translateY(-4px);background:#ffffff25}
+.btn.primary{
+ background:linear-gradient(110deg,#6378ff,#a17aff);
+ border:0;box-shadow:0 8px 25px #8068ff45;
 }
-.light{background:#eeedff;color:var(--blue)}
+.btn.primary:hover{box-shadow:0 12px 35px #8068ff75}
+.btn.light{background:#242541;border-color:#ffffff10}
 
-.heading{text-align:center;margin:40px 0 25px}
-.heading small{color:var(--purple);font-weight:900;letter-spacing:3px}
-.heading h2{font-size:32px;margin:8px 0}
-.heading p{color:#888ba4}
+.eyebrow{
+ font-size:11px;letter-spacing:3px;
+ color:#b3a3ff;font-weight:900;
+}
+.heading{text-align:center;margin:35px 0}
+.heading h2{font-size:35px;margin:10px 0}
+.heading p{color:var(--muted)}
 
 .hero{
- min-height:490px;
- position:relative;overflow:hidden;
- border-radius:32px;
+ min-height:540px;position:relative;overflow:hidden;
+ border-radius:30px;
  display:grid;grid-template-columns:1fr 1fr;
- align-items:center;gap:20px;
- padding:45px;
- color:white;
- background:linear-gradient(120deg,#5368bd,#9874d6);
- box-shadow:0 20px 50px #5368bd35;
+ align-items:center;gap:30px;
+ padding:55px;
+ background:linear-gradient(120deg,#292b61,#57449b 55%,#9c65bd);
 }
-.hero::before,.hero::after{
- content:"";position:absolute;border-radius:50%;
- border:1px solid #ffffff40;
- pointer-events:none;
+.hero:before{
+ content:"";position:absolute;width:500px;height:500px;
+ border:1px solid #ffffff22;border-radius:50%;
+ right:-120px;top:-180px;
 }
-.hero::before{width:350px;height:350px;right:-100px;top:-150px}
-.hero::after{width:230px;height:230px;right:130px;bottom:-150px}
-.hero-info{position:relative;z-index:2}
-.hero h1{font-size:clamp(40px,6vw,65px);line-height:1.05;margin:20px 0}
-.hero p{font-size:18px;color:#f0eaff;line-height:1.5}
-.tag{
- display:inline-block;background:#ffffff25;
- padding:9px 15px;border-radius:30px;
- font-size:12px;font-weight:900;letter-spacing:2px;
+.hero:after{
+ content:"";position:absolute;width:300px;height:300px;
+ border:1px solid #ffffff22;border-radius:50%;
+ right:90px;bottom:-200px;
 }
-.hero-photo{position:relative;z-index:2;animation:float 4s infinite}
-.hero-photo img{
- width:100%;height:310px;object-fit:cover;
- border-radius:25px;border:5px solid #ffffff55;
+.hero-text{position:relative;z-index:2}
+.hero h1{
+ font-size:clamp(45px,6vw,76px);
+ line-height:1.02;margin:20px 0;
+ letter-spacing:-2px;
 }
-.sticker{
- position:absolute;background:white;color:var(--blue);
- padding:12px 17px;border-radius:15px;
- font-weight:900;box-shadow:0 8px 20px #0002;
+.hero h1 span{
+ color:#d7c5ff;
 }
-.sticker.one{top:-15px;left:-15px}
-.sticker.two{bottom:-15px;right:-15px}
+.hero p{color:#e2dfff;line-height:1.7;font-size:17px}
+.hero-image{position:relative;z-index:2;animation:float 5s infinite}
+.hero-image img{
+ width:100%;height:330px;object-fit:cover;
+ border-radius:25px;
+ border:1px solid #ffffff55;
+ box-shadow:0 25px 70px #0007;
+}
+.hero-label{
+ position:absolute;bottom:-18px;left:-18px;
+ padding:14px 20px;border-radius:15px;
+ background:white;color:#5146a1;font-weight:900;
+ box-shadow:0 10px 30px #0004;
+}
+.hero-number{
+ position:absolute;top:-20px;right:-15px;
+ font-size:70px;font-weight:900;color:#ffffff30;
+}
 
-.cards{
- display:grid;grid-template-columns:repeat(3,1fr);
- gap:18px;
+.intro-grid{
+ display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
+ margin-top:25px;
 }
-.card{
- background:white;border-radius:22px;
- padding:22px;border:1px solid #ecebfa;
- box-shadow:0 8px 25px #3036530b;
+.intro-card{
+ background:linear-gradient(145deg,#20213d,#282849);
+ border:1px solid #ffffff13;
+ border-radius:22px;padding:25px;
  transition:.3s;
 }
-.card:hover{transform:translateY(-7px)}
-.card .icon{
- font-size:30px;width:60px;height:60px;
- background:#efefff;border-radius:18px;
- display:grid;place-items:center;
-}
-.card h3{color:var(--blue)}
-.card p{color:#777d96;font-size:14px;line-height:1.5}
+.intro-card:hover{transform:translateY(-8px);border-color:#9c86ff}
+.intro-icon{font-size:35px}
+.intro-card h3{margin-bottom:5px}
+.intro-card p{color:var(--muted);font-size:14px}
 
-.visual-card{
- position:relative;overflow:hidden;
- border-radius:25px;height:230px;
- background:#dcd9f6;
+.photo-strip{
+ display:grid;grid-template-columns:1.3fr 1fr 1fr;
+ gap:12px;height:230px;margin-top:20px;
 }
-.visual-card img{
+.photo-strip img{
  width:100%;height:100%;object-fit:cover;
- transition:.6s;
+ border-radius:18px;
+ filter:saturate(.8);
+ transition:.4s;
 }
-.visual-card:hover img{transform:scale(1.08)}
-.visual-card::after{
- content:"";position:absolute;inset:0;
- background:linear-gradient(transparent 20%,#16152cbd);
+.photo-strip img:hover{transform:scale(1.025);filter:saturate(1.2)}
+
+.presentation-top{
+ display:flex;justify-content:space-between;
+ align-items:center;margin:15px 0;
 }
-.visual-card h3{
- position:absolute;bottom:12px;left:20px;
- color:white;z-index:2;font-size:21px;
+.presentation-top strong{font-size:13px;letter-spacing:2px;color:#b5a4ff}
+.presentation-top span{color:var(--muted);font-size:13px}
+
+.progress{
+ height:5px;background:#ffffff18;border-radius:20px;overflow:hidden;
+}
+.progress div{
+ height:100%;width:0%;
+ background:linear-gradient(90deg,#6378ff,#d69aff);
+ transition:width .5s;
+ box-shadow:0 0 15px #a17aff;
 }
 
 .slide{
- background:white;border-radius:28px;
- overflow:hidden;box-shadow:0 15px 40px #30365312;
+ position:relative;height:570px;
+ border-radius:27px;overflow:hidden;
+ background:#252544;
+ isolation:isolate;
 }
-.slide-head{
- padding:15px 22px;
- display:flex;justify-content:space-between;
- color:white;font-weight:900;
- background:linear-gradient(110deg,var(--blue),var(--purple));
-}
-.progress{height:7px;background:#e9e9f5}
-.progress div{
- height:100%;width:0%;
- background:linear-gradient(90deg,#9b7ce3,#e6a6ec);
- transition:.5s;
-}
-.slide-visual{
- position:relative;height:460px;
- overflow:hidden;background:#ddd;
-}
-.slide-visual img{
+.slide img{
+ position:absolute;inset:0;
  width:100%;height:100%;object-fit:cover;
+ z-index:-2;
  transition:transform 1s;
 }
-.slide.active .slide-visual img{transform:scale(1.02)}
-.slide-visual::after{
- content:"";position:absolute;inset:0;
- background:linear-gradient(90deg,#17152cbb,transparent 90%),
- linear-gradient(0deg,#17152c65,transparent 60%);
+.slide:hover img{transform:scale(1.035)}
+.slide:after{
+ content:"";position:absolute;inset:0;z-index:-1;
+ background:linear-gradient(90deg,#111225ee 0%,#111225b9 43%,transparent 100%),
+ linear-gradient(0deg,#11122580,transparent 55%);
 }
-.slide-caption{
- position:absolute;z-index:2;
- left:6%;bottom:45px;
- color:white;max-width:600px;
+.slide-content{
+ position:absolute;left:6%;bottom:55px;
+ max-width:620px;
+ animation:reveal .55s ease;
 }
-.slide-caption .emoji{font-size:55px}
-.slide-caption h2{
- font-size:clamp(35px,6vw,60px);
- line-height:1.05;margin:12px 0;
+.slide-number{
+ color:#c6b6ff;letter-spacing:4px;
+ font-weight:900;font-size:13px;
 }
-.slide-caption p{
- font-size:18px;color:#f0efff;
+.slide-icon{
+ font-size:48px;margin:20px 0 5px;
+ filter:drop-shadow(0 5px 10px #0005);
 }
-.keywords{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}
+.slide h2{
+ font-size:clamp(40px,6vw,68px);
+ line-height:1.02;letter-spacing:-2px;
+ margin:8px 0 15px;
+}
+.slide p{
+ font-size:17px;color:#e1dff1;
+ max-width:500px;line-height:1.5;
+}
+.keywords{display:flex;gap:9px;flex-wrap:wrap;margin-top:23px}
 .keyword{
- background:#ffffff30;border:1px solid #ffffff75;
- padding:8px 14px;border-radius:30px;
- font-weight:900;font-size:12px;
- backdrop-filter:blur(5px);
+ background:#ffffff20;
+ border:1px solid #ffffff50;
+ border-radius:30px;padding:9px 15px;
+ font-size:12px;font-weight:900;
+ backdrop-filter:blur(10px);
 }
-.slide-actions{
- display:flex;justify-content:center;
- flex-wrap:wrap;padding:17px;
+.slide-bottom{
+ display:flex;justify-content:space-between;
+ align-items:center;margin-top:17px;
+}
+.dots{display:flex;gap:7px;flex-wrap:wrap}
+.dot{
+ width:9px;height:9px;border-radius:50%;
+ background:#ffffff35;border:0;padding:0;
+}
+.dot.active{background:#ad9aff;width:25px;border-radius:20px}
+
+.side-info{
+ display:flex;gap:12px;align-items:center;
+ color:#b4b1d0;font-size:12px;
+}
+.side-info i{
+ width:8px;height:8px;background:#9f8aff;
+ border-radius:50%;
 }
 
 .game{
  max-width:700px;margin:25px auto;
- background:white;border-radius:25px;
- padding:30px;box-shadow:0 12px 40px #30365312;
+ padding:32px;background:#20213d;
+ border:1px solid #ffffff15;border-radius:25px;
+ box-shadow:0 15px 45px #0004;
 }
-.game h2{color:var(--blue)}
-.game-top{display:flex;justify-content:space-between;font-weight:900;color:var(--purple)}
-.question{font-size:24px;margin:28px 0;color:var(--blue)}
+.game h2{color:#c7b6ff}
+.game-top{display:flex;justify-content:space-between;color:#b7a4ff;font-weight:900}
+.question{font-size:25px;margin:30px 0}
 .answer{
- width:100%;padding:16px;text-align:left;
- background:#f5f5ff;border:2px solid #e9e9f5;
- border-radius:14px;margin:8px 0;
- color:var(--dark);font-size:15px;font-weight:800;
- transition:.2s;
+ display:block;width:100%;text-align:left;
+ background:#292a4b;color:white;
+ border:1px solid #ffffff17;border-radius:14px;
+ padding:16px;margin:9px 0;
+ font-size:15px;font-weight:800;transition:.2s;
 }
-.answer:hover:not(:disabled){border-color:var(--purple);transform:translateX(4px)}
-.answer.correct{background:#e2f8ed;border-color:#61bc91}
-.answer.wrong{background:#fff0f0;border-color:#df9090}
-.answer:disabled{cursor:default}
+.answer:hover:not(:disabled){border-color:#9d8aff;transform:translateX(4px)}
+.answer.correct{background:#1d533e;border-color:#6bd7a2}
+.answer.wrong{background:#542d43;border-color:#ef929f}
 .feedback{
- margin-top:15px;padding:16px;border-radius:15px;
- background:#efefff;line-height:1.5;
+ padding:17px;background:#34325d;
+ border:1px solid #ffffff18;border-radius:14px;
+ line-height:1.6;margin-top:15px;
 }
 input{
- width:100%;padding:15px;
- border:2px solid #e7e7f4;border-radius:13px;
- font-size:16px;font-family:inherit;margin:15px 0;
+ width:100%;padding:15px;border-radius:13px;
+ background:#292a4b;border:1px solid #ffffff25;
+ color:white;font-size:16px;font-family:inherit;margin:15px 0;
 }
+input::placeholder{color:#8889a9}
 .rank{
  display:flex;justify-content:space-between;
- padding:15px;border-bottom:1px solid #eee;font-weight:900;
+ padding:15px;border-bottom:1px solid #ffffff18;
+ font-weight:900;
 }
 .actions{text-align:center;margin:20px}
 .hidden{display:none!important}
-footer{text-align:center;padding:25px;color:#898ba4}
+footer{text-align:center;color:#8586a8;padding:25px}
 
 @media(max-width:700px){
- header{padding:12px}
- .logo{font-size:14px}
- nav button{font-size:12px;padding:8px}
- main{padding:18px 12px}
- .hero{grid-template-columns:1fr;padding:30px 20px;text-align:center}
- .hero h1{font-size:43px}
- .hero-photo img{height:220px}
- .cards{grid-template-columns:1fr}
- .slide-visual{height:440px}
- .slide-caption{left:22px;right:18px;bottom:25px}
- .slide-caption h2{font-size:39px}
- .slide-caption p{font-size:15px}
- .game{padding:20px}
+ header{padding:0 12px;height:65px}
+ .logo{font-size:12px}
+ nav button{font-size:11px;padding:8px}
+ main{padding:20px 12px}
+ .hero{grid-template-columns:1fr;padding:32px 22px;text-align:center}
+ .hero h1{font-size:48px}
+ .hero-image img{height:230px}
+ .hero-label{left:0}
+ .intro-grid{grid-template-columns:1fr}
+ .photo-strip{height:140px;gap:6px}
+ .slide{height:570px}
+ .slide:after{
+  background:linear-gradient(0deg,#111225f5 0%,#111225a0 55%,transparent 100%);
+ }
+ .slide-content{left:22px;right:18px;bottom:35px}
+ .slide h2{font-size:43px}
+ .slide p{font-size:15px}
+ .slide-icon{font-size:39px}
+ .slide-bottom{flex-direction:column;gap:12px}
+ .game{padding:21px}
+ .question{font-size:21px}
  .heading h2{font-size:27px}
 }
 @media(prefers-reduced-motion:reduce){
@@ -283,167 +333,158 @@ footer{text-align:center;padding:25px;color:#898ba4}
 
 <main>
 
-<!-- INICIO -->
 <section id="inicio" class="active">
 
  <div class="hero">
-  <div class="hero-info">
-   <span class="tag">🌈 RESPETO · IGUALDAD · INCLUSIÓN</span>
-   <h1>Todos tenemos un lugar 💙</h1>
-   <p>Un mundo donde las diferencias nos unen y todos tenemos las mismas oportunidades.</p>
-   <button class="btn" onclick="ir('presentacion')">Explorar presentación →</button>
-   <button class="btn" onclick="ir('registro')">Jugar 🎮</button>
+  <div class="hero-text">
+   <div class="eyebrow">UNA SOCIEDAD PARA TODOS</div>
+   <h1>Todos tenemos <span>un lugar.</span></h1>
+   <p>Discriminación, diversidad e inclusión de personas con discapacidad.</p>
+   <button class="btn primary" onclick="ir('presentacion')">DESCUBRIR LOS TEMAS →</button>
+   <button class="btn" onclick="ir('registro')">🎮 JUGAR</button>
   </div>
-  <div class="hero-photo">
-   <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1000&q=85" alt="Grupo de amigos compartiendo">
-   <div class="sticker one">🤝 Inclusión</div>
-   <div class="sticker two">💜 Igualdad</div>
+  <div class="hero-image">
+   <div class="hero-number">01</div>
+   <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1100&q=90" alt="Grupo de amigos compartiendo">
+   <div class="hero-label">💜 La diversidad nos une</div>
   </div>
  </div>
 
  <div class="heading">
-  <small>CONOZCAMOS EL TEMA</small>
-  <h2>Discriminación e inclusión</h2>
-  <p>Cuatro ideas para comenzar.</p>
+  <div class="eyebrow">TRES CONCEPTOS CLAVE</div>
+  <h2>Una sociedad sin barreras</h2>
+  <p>Pequeñas ideas. Grandes cambios.</p>
  </div>
 
- <div class="cards">
-  <div class="card">
-   <div class="icon">♿</div>
-   <h3>Discapacidad</h3>
-   <p>Derechos y participación.</p>
+ <div class="intro-grid">
+  <div class="intro-card">
+   <div class="intro-icon">🌈</div>
+   <h3>Diversidad</h3>
+   <p>Respetar nuestras diferencias.</p>
   </div>
-  <div class="card">
-   <div class="icon">🚧</div>
-   <h3>Barreras</h3>
-   <p>Obstáculos de la sociedad.</p>
+  <div class="intro-card">
+   <div class="intro-icon">♿</div>
+   <h3>Accesibilidad</h3>
+   <p>Eliminar los obstáculos.</p>
   </div>
-  <div class="card">
-   <div class="icon">💙</div>
+  <div class="intro-card">
+   <div class="intro-icon">💙</div>
    <h3>Inclusión</h3>
-   <p>Igualdad de oportunidades.</p>
+   <p>Oportunidades para todos.</p>
   </div>
  </div>
 
  <div class="heading">
-  <small>UNA SOCIEDAD PARA TODOS</small>
-  <h2>La inclusión empieza con el respeto</h2>
+  <div class="eyebrow">UN MISMO MUNDO</div>
+  <h2>Todos podemos participar.</h2>
  </div>
 
- <div class="visual-card" style="height:290px">
-  <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=85" alt="Personas colaborando">
-  <h3>Todos podemos formar parte. 💙</h3>
+ <div class="photo-strip">
+  <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=700&q=85" alt="Equipo colaborando">
+  <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=700&q=85" alt="Familia compartiendo">
+  <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=700&q=85" alt="Personas trabajando juntas">
  </div>
 
  <div class="actions">
-  <button class="btn primary" onclick="ir('presentacion')">Comenzar →</button>
+  <button class="btn primary" onclick="ir('presentacion')">COMENZAR PRESENTACIÓN →</button>
  </div>
 </section>
 
-<!-- PRESENTACIÓN -->
 <section id="presentacion">
 
- <div class="heading">
-  <small>EXPLORÁ LOS TEMAS</small>
-  <h2>Una sociedad más inclusiva 💙</h2>
-  <p>9 temas · 9 ideas importantes</p>
+ <div class="presentation-top">
+  <strong>EXPLORANDO LA INCLUSIÓN</strong>
+  <span id="numero">01 / 09</span>
+ </div>
+ <div class="progress"><div id="barra"></div></div>
+
+ <div style="height:18px"></div>
+
+ <div class="slide" id="slide">
+  <img id="imagenSlide" src="" alt="">
+  <div class="slide-content" id="slideContent">
+   <div class="slide-number" id="slideNumero">01 — DIVERSIDAD</div>
+   <div class="slide-icon" id="emoji"></div>
+   <h2 id="tituloSlide"></h2>
+   <p id="textoSlide"></p>
+   <div class="keywords" id="keywords"></div>
+  </div>
  </div>
 
- <div class="slide">
-  <div class="slide-head">
-   <span id="numero">01 / 09</span>
-   <span>💙 TODOS TENEMOS UN LUGAR</span>
-  </div>
-  <div class="progress"><div id="barra"></div></div>
-
-  <div class="slide-visual">
-   <img id="imagenSlide" src="" alt="">
-   <div class="slide-caption">
-    <div class="emoji" id="emoji"></div>
-    <h2 id="tituloSlide"></h2>
-    <p id="textoSlide"></p>
-    <div class="keywords" id="keywords"></div>
-   </div>
-  </div>
-
-  <div class="slide-actions">
-   <button class="btn light" onclick="anterior()">← Anterior</button>
-   <button class="btn primary" onclick="siguiente()">Siguiente →</button>
-   <button class="btn light" onclick="ir('registro')">🎮 Quiz</button>
+ <div class="slide-bottom">
+  <div class="dots" id="dots"></div>
+  <div>
+   <button class="btn light" onclick="anterior()">← ANTERIOR</button>
+   <button class="btn primary" onclick="siguiente()">SIGUIENTE →</button>
+   <button class="btn" onclick="ir('registro')">🎮 QUIZ</button>
   </div>
  </div>
 </section>
 
-<!-- REGISTRO -->
 <section id="registro">
  <div class="heading">
-  <small>¡PONÉ A PRUEBA LO QUE APRENDISTE!</small>
-  <h2>¿Cuánto sabés? 🎮</h2>
-  <p>8 preguntas para demostrar tus conocimientos.</p>
+  <div class="eyebrow">MODO DESAFÍO</div>
+  <h2>¿Cuánto aprendiste? 🎮</h2>
+  <p>8 preguntas · 800 puntos posibles</p>
  </div>
-
  <div class="game" style="text-align:center">
   <div style="font-size:75px;animation:float 3s infinite">🏆</div>
-  <h2>¡A jugar!</h2>
-  <p>Respondé y conseguí la mayor cantidad de puntos.</p>
-  <label for="nombre"><b>Tu nombre o apodo:</b></label>
+  <h2>¡Demostrá lo que sabés!</h2>
+  <p style="color:var(--muted)">Respondé las preguntas y conseguí la mayor puntuación.</p>
+  <label for="nombre">TU NOMBRE O APODO</label>
   <input id="nombre" maxlength="24" placeholder="Escribí tu nombre">
-  <button class="btn primary" style="width:100%" onclick="empezar()">Empezar 🚀</button>
-  <button class="btn light" onclick="ir('ranking')">🏆 Ver ranking</button>
+  <button class="btn primary" style="width:100%" onclick="empezar()">COMENZAR 🚀</button>
+  <button class="btn" onclick="ir('ranking')">🏆 VER RANKING</button>
  </div>
 </section>
 
-<!-- JUEGO -->
 <section id="juego">
  <div class="game">
   <div class="game-top">
    <span id="contador"></span>
    <span id="marcador">⭐ 0 PTS</span>
   </div>
-  <div class="progress" style="margin-top:15px">
-   <div id="barraPregunta"></div>
-  </div>
+  <div class="progress" style="margin-top:15px"><div id="barraPregunta"></div></div>
   <h2 class="question" id="pregunta"></h2>
   <div id="opciones"></div>
   <div id="resultadoPregunta" class="feedback hidden"></div>
   <div class="actions">
-   <button id="continuar" class="btn primary hidden" onclick="continuar()">Continuar →</button>
+   <button id="continuar" class="btn primary hidden" onclick="continuar()">CONTINUAR →</button>
   </div>
  </div>
 </section>
 
-<!-- FINAL -->
 <section id="final">
  <div class="game" style="text-align:center">
-  <div style="font-size:85px;animation:float 3s infinite">🏆</div>
-  <h1 style="color:var(--blue)">¡Lo lograste!</h1>
+  <div style="font-size:85px">🏆</div>
+  <div class="eyebrow">DESAFÍO COMPLETADO</div>
+  <h1>¡Excelente trabajo!</h1>
   <h2 id="mensajeFinal"></h2>
-  <h1 id="puntajeFinal" style="color:var(--purple);font-size:45px"></h1>
-  <p>¡Gracias por aprender sobre la inclusión! 💙</p>
-  <button class="btn primary" onclick="ir('ranking')">Ver ranking</button>
-  <button class="btn light" onclick="ir('registro')">Volver a jugar</button>
+  <div style="background:#34325d;border-radius:20px;padding:20px">
+   <p>TU PUNTUACIÓN</p>
+   <h1 id="puntajeFinal" style="color:#c6b4ff;font-size:48px"></h1>
+  </div>
+  <button class="btn primary" onclick="ir('ranking')">VER RANKING</button>
+  <button class="btn" onclick="ir('registro')">JUGAR OTRA VEZ</button>
  </div>
 </section>
 
-<!-- RANKING -->
 <section id="ranking">
  <div class="heading">
-  <small>LOS RESULTADOS</small>
+  <div class="eyebrow">LOS MEJORES RESULTADOS</div>
   <h2>🏆 Ranking</h2>
-  <p>Los mejores puntajes de este dispositivo.</p>
+  <p>Resultados guardados en este dispositivo.</p>
  </div>
  <div class="game" id="listaRanking"></div>
  <div class="actions">
-  <button class="btn light" onclick="ir('inicio')">Inicio</button>
-  <button class="btn light" onclick="borrarRanking()">Borrar resultados</button>
+  <button class="btn" onclick="ir('inicio')">VOLVER AL INICIO</button>
+  <button class="btn" onclick="borrarRanking()">BORRAR RESULTADOS</button>
  </div>
 </section>
 
 </main>
 
-<footer>
- 💙 Hecho para aprender, respetar e incluir.
-</footer>
+<footer>💙 TODOS TENEMOS UN LUGAR · RESPETAR · INCLUIR · COMPARTIR</footer>
 
 <script>
 function ir(id){
@@ -453,70 +494,79 @@ function ir(id){
  if(id==='ranking')mostrarRanking();
 }
 
-// DIAPOSITIVAS
+// Cada tema tiene una fotografía diferente.
 const diapositivas=[
 {
+tema:'DIVERSIDAD',
 emoji:'🌈',
 titulo:'Aceptar la diversidad',
 texto:'TODOS SOMOS DIFERENTES. TODOS MERECEMOS RESPETO.',
 tags:['Respeto','Igualdad','Diversidad'],
-img:'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1400&q=90'
+img:'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1600&q=90'
 },
 {
+tema:'DISCAPACIDAD',
 emoji:'♿',
 titulo:'Personas con discapacidad',
 texto:'LOS MISMOS DERECHOS. LAS MISMAS OPORTUNIDADES.',
-tags:['Derechos','Autonomía','Igualdad'],
-img:'https://images.pexels.com/photos/3768131/pexels-photo-3768131.jpeg?auto=compress&cs=tinysrgb&w=1400'
+tags:['Derechos','Autonomía','Participación'],
+img:'https://images.pexels.com/photos/3768131/pexels-photo-3768131.jpeg?auto=compress&cs=tinysrgb&w=1600'
 },
 {
+tema:'BARRERAS',
 emoji:'🚧',
 titulo:'Las barreras sociales',
 texto:'LOS OBSTÁCULOS TAMBIÉN ESTÁN EN LA SOCIEDAD.',
-tags:['Accesibilidad','Transporte','Trabajo'],
-img:'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=1400&q=90'
+tags:['Accesibilidad','Transporte','Espacios'],
+img:'https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1600&q=90'
 },
 {
+tema:'CAPACIDADES',
 emoji:'🌟',
 titulo:'Capacidades y posibilidades',
-texto:'CADA PERSONA TIENE TALENTOS Y HABILIDADES.',
-tags:['Talentos','Habilidades','Oportunidades'],
-img:'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1400&q=90'
+texto:'CADA PERSONA TIENE HABILIDADES Y TALENTOS.',
+tags:['Talentos','Habilidades','Posibilidades'],
+img:'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1600&q=90'
 },
 {
+tema:'FAMILIA',
 emoji:'🏠',
 titulo:'El impacto en las familias',
-texto:'EL ACOMPAÑAMIENTO Y EL APOYO SON FUNDAMENTALES.',
+texto:'EL APOYO Y EL ACOMPAÑAMIENTO SON FUNDAMENTALES.',
 tags:['Familia','Apoyo','Acompañamiento'],
-img:'https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=1400&q=90'
+img:'https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=1600&q=90'
 },
 {
+tema:'OPORTUNIDADES',
 emoji:'⚖️',
 titulo:'Igualdad de oportunidades',
 texto:'EDUCACIÓN, TRABAJO Y PARTICIPACIÓN PARA TODOS.',
-tags:['Educación','Trabajo','Transporte'],
-img:'https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1400&q=90'
+tags:['Educación','Trabajo','Igualdad'],
+img:'https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1600&q=90'
 },
 {
+tema:'ORGANIZACIONES',
 emoji:'🤝',
 titulo:'Organizaciones que ayudan',
-texto:'UNIRSE PARA DEFENDER DERECHOS Y PROMOVER LA INCLUSIÓN.',
-tags:['ONG','Participación','Derechos'],
-img:'https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&w=1400&q=90'
+texto:'JUNTOS PODEMOS DEFENDER DERECHOS Y GENERAR CAMBIOS.',
+tags:['ONG','Comunidad','Derechos'],
+img:'https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&w=1600&q=90'
 },
 {
+tema:'REFLEXIÓN',
 emoji:'🚌',
 titulo:'Una situación para reflexionar',
 texto:'AYUDAR TAMBIÉN ES RESPETAR LA AUTONOMÍA.',
 tags:['Empatía','Solidaridad','Respeto'],
-img:'https://images.pexels.com/photos/3768131/pexels-photo-3768131.jpeg?auto=compress&cs=tinysrgb&w=1400'
+img:'https://images.pexels.com/photos/1170979/pexels-photo-1170979.jpeg?auto=compress&cs=tinysrgb&w=1600'
 },
 {
+tema:'INCLUSIÓN',
 emoji:'💙',
 titulo:'Todos tenemos un lugar',
 texto:'UNA SOCIEDAD INCLUSIVA SE CONSTRUYE ENTRE TODOS.',
 tags:['Incluir','Respetar','Compartir'],
-img:'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1400&q=90'
+img:'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1600&q=90'
 }
 ];
 
@@ -524,60 +574,55 @@ let actual=0;
 
 function mostrarDiapositiva(){
  const d=diapositivas[actual];
+ const img=document.getElementById('imagenSlide');
+ img.style.opacity='0.25';
+ document.getElementById('slideContent').style.animation='none';
+ void document.getElementById('slideContent').offsetWidth;
+ document.getElementById('slideContent').style.animation='reveal .55s ease';
+
+ img.onload=()=>{img.style.opacity='1'};
+ img.src=d.img;
+ img.alt=d.tema;
+
+ document.getElementById('numero').textContent=
+ String(actual+1).padStart(2,'0')+' / 09';
+ document.getElementById('slideNumero').textContent=
+ String(actual+1).padStart(2,'0')+' — '+d.tema;
  document.getElementById('emoji').textContent=d.emoji;
  document.getElementById('tituloSlide').textContent=d.titulo;
  document.getElementById('textoSlide').textContent=d.texto;
- document.getElementById('imagenSlide').src=d.img;
- document.getElementById('imagenSlide').alt=d.titulo;
- document.getElementById('numero').textContent=
- String(actual+1).padStart(2,'0')+' / 09';
  document.getElementById('barra').style.width=
- ((actual+1)/diapositivas.length*100)+'%';
+ ((actual+1)/9*100)+'%';
  document.getElementById('keywords').innerHTML=
  d.tags.map(t=>`<span class="keyword">${t}</span>`).join('');
+
+ document.getElementById('dots').innerHTML=
+ diapositivas.map((x,i)=>
+ `<button aria-label="Diapositiva ${i+1}" class="dot ${i===actual?'active':''}" onclick="irDiapositiva(${i})"></button>`
+ ).join('');
 }
 
+function irDiapositiva(i){
+ actual=i;mostrarDiapositiva();
+}
 function siguiente(){
- if(actual<diapositivas.length-1){
-  actual++;
-  mostrarDiapositiva();
- }else{
-  ir('registro');
- }
+ if(actual<8){actual++;mostrarDiapositiva()}
+ else{ir('registro')}
 }
 function anterior(){
- if(actual>0){
-  actual--;
-  mostrarDiapositiva();
- }
+ if(actual>0){actual--;mostrarDiapositiva()}
 }
 
 // QUIZ
 const preguntas=[
-{q:'¿Qué derecho tienen todas las personas?',
-a:['Ser aceptadas tal como son','Ser todas iguales','No participar en sociedad','Recibir siempre dinero'],
-c:0,e:'Todas las personas tienen derecho a ser aceptadas y respetadas.'},
-{q:'¿Qué puede dificultar la integración social?',
-a:['La amistad','Las barreras sociales','La diversidad','El respeto'],
-c:1,e:'Las barreras sociales y la falta de accesibilidad dificultan la integración.'},
-{q:'¿Qué significa equiparación de oportunidades?',
-a:['Separar a las personas','Dar oportunidades a unos pocos','Hacer accesible la sociedad para todos','Evitar actividades culturales'],
-c:2,e:'Significa garantizar el acceso a espacios y servicios para todos.'},
-{q:'¿Cuál de estos ámbitos debe ser accesible?',
-a:['El transporte','Solo los estadios','Ninguno','Únicamente internet'],
-c:0,e:'El transporte debe ser accesible para todas las personas.'},
-{q:'¿Cómo puede afectar la discapacidad a las familias?',
-a:['Solo deportivamente','Emocional y económicamente','Nunca afecta','Solo en la escuela'],
-c:1,e:'Puede generar desafíos emocionales y económicos.'},
-{q:'¿Qué organizaciones impulsan propuestas de inclusión?',
-a:['Solo empresas','Clubes deportivos','ONG y organizaciones de personas con discapacidad y sus familias','Ninguna'],
-c:2,e:'Estas organizaciones trabajan para defender derechos y oportunidades.'},
-{q:'¿Qué debemos hacer frente a la discriminación?',
-a:['Ignorarla','Respetar e incluir a las personas','Separar a las personas','Burlarnos'],
-c:1,e:'Debemos respetar los derechos y eliminar las barreras.'},
-{q:'¿Qué es importante al ayudar a alguien?',
-a:['Respetar su dignidad y autonomía','Obligarlo a aceptar ayuda','Ignorarlo','Decidir siempre por esa persona'],
-c:0,e:'Ayudar también significa respetar las decisiones de la otra persona.'}
+{q:'¿Qué derecho tienen todas las personas?',a:['Ser aceptadas tal como son','Ser todas iguales','No participar en sociedad','Recibir siempre dinero'],c:0,e:'Todas las personas tienen derecho a ser aceptadas y respetadas.'},
+{q:'¿Qué puede dificultar la integración social?',a:['La amistad','Las barreras sociales','La diversidad','El respeto'],c:1,e:'Las barreras sociales y la falta de accesibilidad dificultan la integración.'},
+{q:'¿Qué significa equiparación de oportunidades?',a:['Separar a las personas','Dar oportunidades a unos pocos','Hacer accesible la sociedad para todos','Evitar actividades culturales'],c:2,e:'Significa garantizar el acceso a espacios y servicios para todos.'},
+{q:'¿Cuál de estos ámbitos debe ser accesible?',a:['El transporte','Solo los estadios','Ninguno','Únicamente internet'],c:0,e:'El transporte debe ser accesible para todas las personas.'},
+{q:'¿Cómo puede afectar la discapacidad a las familias?',a:['Solo deportivamente','Emocional y económicamente','Nunca afecta','Solo en la escuela'],c:1,e:'Puede generar desafíos emocionales y económicos.'},
+{q:'¿Qué organizaciones impulsan propuestas de inclusión?',a:['Solo empresas','Clubes deportivos','ONG y organizaciones de personas con discapacidad y sus familias','Ninguna'],c:2,e:'Estas organizaciones trabajan para defender derechos y oportunidades.'},
+{q:'¿Qué debemos hacer frente a la discriminación?',a:['Ignorarla','Respetar e incluir a las personas','Separar a las personas','Burlarnos'],c:1,e:'Debemos respetar los derechos y eliminar las barreras.'},
+{q:'¿Qué es importante al ayudar a alguien?',a:['Respetar su dignidad y autonomía','Obligarlo a aceptar ayuda','Ignorarlo','Decidir siempre por esa persona'],c:0,e:'Ayudar también significa respetar las decisiones de la otra persona.'}
 ];
 
 let nombre='',puntos=0,indice=0,respondida=false;
@@ -585,56 +630,44 @@ let nombre='',puntos=0,indice=0,respondida=false;
 function empezar(){
  nombre=document.getElementById('nombre').value.trim();
  if(!nombre){alert('Escribí tu nombre primero.');return}
- puntos=0;indice=0;
- mostrarPregunta();ir('juego');
+ puntos=0;indice=0;mostrarPregunta();ir('juego');
 }
-
 function mostrarPregunta(){
  respondida=false;
  const p=preguntas[indice];
- document.getElementById('contador').textContent=
- `PREGUNTA ${indice+1} DE 8`;
+ document.getElementById('contador').textContent=`PREGUNTA ${indice+1} DE 8`;
  document.getElementById('marcador').textContent=`⭐ ${puntos} PTS`;
- document.getElementById('barraPregunta').style.width=
- ((indice+1)/8*100)+'%';
+ document.getElementById('barraPregunta').style.width=((indice+1)/8*100)+'%';
  document.getElementById('pregunta').textContent=p.q;
  document.getElementById('resultadoPregunta').classList.add('hidden');
  document.getElementById('continuar').classList.add('hidden');
-
- const opciones=document.getElementById('opciones');
- opciones.innerHTML='';
- p.a.forEach((respuesta,i)=>{
+ const op=document.getElementById('opciones');
+ op.innerHTML='';
+ p.a.forEach((r,i)=>{
   const b=document.createElement('button');
-  b.className='answer';
-  b.textContent=respuesta;
-  b.onclick=()=>responder(i);
-  opciones.appendChild(b);
+  b.className='answer';b.textContent=r;
+  b.onclick=()=>responder(i);op.appendChild(b);
  });
 }
-
 function responder(i){
  if(respondida)return;
  respondida=true;
- const p=preguntas[indice];
- const correcto=i===p.c;
- if(correcto)puntos+=100;
-
+ const p=preguntas[indice],ok=i===p.c;
+ if(ok)puntos+=100;
  document.querySelectorAll('.answer').forEach((b,j)=>{
   b.disabled=true;
   if(j===p.c)b.classList.add('correct');
   else if(j===i)b.classList.add('wrong');
  });
-
  const f=document.getElementById('resultadoPregunta');
- f.innerHTML=`<b>${correcto?'🎉 ¡Correcto! +100 puntos':'💡 ¡A seguir aprendiendo!'}</b><br>${p.e}`;
+ f.innerHTML=`<b>${ok?'🎉 ¡Correcto! +100 puntos':'💡 ¡A seguir aprendiendo!'}</b><br>${p.e}`;
  f.classList.remove('hidden');
  document.getElementById('marcador').textContent=`⭐ ${puntos} PTS`;
  document.getElementById('continuar').classList.remove('hidden');
 }
-
 function continuar(){
  indice++;
- if(indice<8){mostrarPregunta()}
+ if(indice<8)mostrarPregunta();
  else{
   guardarResultado();
   document.getElementById('mensajeFinal').textContent='¡Muy bien, '+nombre+'!';
@@ -660,24 +693,29 @@ function escapar(t){
  }[c]));
 }
 function mostrarRanking(){
- const lista=obtenerResultados();
- const cont=document.getElementById('listaRanking');
+ const lista=obtenerResultados(),cont=document.getElementById('listaRanking');
  if(!lista.length){
-  cont.innerHTML='<p style="text-align:center">Todavía no hay jugadores. ¡Sé el primero! 💙</p>';
+  cont.innerHTML='<p style="text-align:center">Todavía no hay participantes. ¡Sé el primero! 💙</p>';
   return;
  }
  cont.innerHTML=lista.map((p,i)=>`
  <div class="rank">
  <span>${['🥇','🥈','🥉'][i]||'⭐'} ${escapar(p.nombre)}</span>
- <span>${p.puntos} pts</span>
+ <span>${p.puntos} PTS</span>
  </div>`).join('');
 }
 function borrarRanking(){
- if(confirm('¿Borrar todos los resultados?')){
-  localStorage.removeItem('rankingInclusion');
-  mostrarRanking();
+ if(confirm('¿Querés borrar todos los resultados?')){
+  localStorage.removeItem('rankingInclusion');mostrarRanking();
  }
 }
+
+document.addEventListener('keydown',e=>{
+ if(document.getElementById('presentacion').classList.contains('active')){
+  if(e.key==='ArrowRight')siguiente();
+  if(e.key==='ArrowLeft')anterior();
+ }
+});
 
 mostrarDiapositiva();
 </script>
