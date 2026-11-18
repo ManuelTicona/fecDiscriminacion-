@@ -1,114 +1,1076 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Discriminación e inclusión</title>
+<title>Todos tenemos un lugar 💙</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f4f5ff;color:#303653}
-header{background:white;padding:18px;text-align:center;color:#5368bd;font-weight:bold}
-main{max-width:900px;margin:auto;padding:25px 15px}
-section{display:none}section.active{display:block}
-.card{background:white;padding:25px;border-radius:20px;margin:15px 0;box-shadow:0 5px 20px #0000000b}
-.hero{text-align:center;padding:35px 5px}.emoji{font-size:55px}
-h1,h2{color:#5368bd}h1{font-size:clamp(30px,6vw,48px)}
-p,li{line-height:1.6}
-button{border:0;border-radius:12px;padding:13px 19px;margin:5px;background:#5368bd;color:white;font-weight:bold;font-size:15px;cursor:pointer}
-button.secondary{background:#e9ebff;color:#5368bd}
-button.answer{display:block;width:100%;text-align:left;background:#eef0ff;color:#303653;margin:10px 0;padding:16px}
-button:disabled{opacity:.6}input{width:100%;padding:14px;border:2px solid #e2e5f5;border-radius:12px;font-size:17px;margin:10px 0}
-.actions{text-align:center;margin-top:20px}.progress{height:8px;background:#e5e7f6;border-radius:20px;margin:15px 0}
-.progress div{height:8px;background:#8b68cc;border-radius:20px}.feedback{padding:15px;background:#eaf8f2;border-radius:12px;margin-top:15px}
-.rank{display:flex;justify-content:space-between;padding:14px;border-bottom:1px solid #eee}
-footer{text-align:center;color:#777;padding:25px}
+:root{
+ --blue:#5368bd;
+ --purple:#9072d8;
+ --light:#eef0ff;
+ --dark:#303653;
+ --pink:#f3dfff;
+ --white:#fff;
+}
+
+*{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+ margin:0;
+ font-family:'Nunito',sans-serif;
+ background:#f5f5ff;
+ color:var(--dark);
+ overflow-x:hidden;
+}
+
+body::before{
+ content:"";
+ position:fixed;
+ width:400px;
+ height:400px;
+ background:#c8c9ff;
+ filter:blur(110px);
+ opacity:.35;
+ top:-180px;
+ left:-150px;
+ z-index:-1;
+}
+
+body::after{
+ content:"";
+ position:fixed;
+ width:350px;
+ height:350px;
+ background:#e8c9ff;
+ filter:blur(110px);
+ opacity:.35;
+ bottom:-150px;
+ right:-100px;
+ z-index:-1;
+}
+
+header{
+ position:sticky;
+ top:0;
+ z-index:20;
+ background:#ffffffdd;
+ backdrop-filter:blur(15px);
+ border-bottom:1px solid #e9e7ff;
+ padding:15px 6%;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+}
+
+.logo{
+ font-weight:900;
+ font-size:19px;
+ color:var(--blue);
+}
+
+.logo span{color:var(--purple)}
+
+.nav{
+ display:flex;
+ gap:8px;
+}
+
+.nav button{
+ border:0;
+ background:transparent;
+ color:var(--blue);
+ font-family:inherit;
+ font-weight:800;
+ padding:10px 15px;
+ border-radius:12px;
+ cursor:pointer;
+}
+
+.nav button:hover{background:var(--light)}
+
+main{
+ max-width:1050px;
+ margin:auto;
+ padding:35px 18px 65px;
+}
+
+section{display:none}
+section.active{
+ display:block;
+ animation:appear .55s ease;
+}
+
+@keyframes appear{
+ from{opacity:0;transform:translateY(18px)}
+ to{opacity:1;transform:translateY(0)}
+}
+
+@keyframes float{
+ 0%,100%{transform:translateY(0)}
+ 50%{transform:translateY(-13px)}
+}
+
+@keyframes pulse{
+ 0%,100%{transform:scale(1)}
+ 50%{transform:scale(1.05)}
+}
+
+@keyframes shine{
+ 0%{background-position:0%}
+ 100%{background-position:200%}
+}
+
+.hero{
+ position:relative;
+ overflow:hidden;
+ min-height:450px;
+ padding:65px 45px;
+ border-radius:32px;
+ background:linear-gradient(120deg,#5368bd,#8870d5 65%,#b18ae6);
+ color:white;
+ display:grid;
+ grid-template-columns:1.1fr .9fr;
+ align-items:center;
+ gap:20px;
+ box-shadow:0 20px 50px #5368bd30;
+}
+
+.hero::before{
+ content:"";
+ position:absolute;
+ width:300px;
+ height:300px;
+ border:1px solid #ffffff40;
+ border-radius:50%;
+ right:-90px;
+ top:-130px;
+}
+
+.hero::after{
+ content:"";
+ position:absolute;
+ width:200px;
+ height:200px;
+ border:1px solid #ffffff40;
+ border-radius:50%;
+ right:80px;
+ bottom:-130px;
+}
+
+.hero-content{position:relative;z-index:2}
+
+.tag{
+ display:inline-block;
+ padding:8px 15px;
+ background:#ffffff25;
+ border:1px solid #ffffff40;
+ border-radius:30px;
+ font-size:13px;
+ font-weight:900;
+ letter-spacing:1px;
+}
+
+.hero h1{
+ font-size:clamp(35px,5vw,57px);
+ line-height:1.08;
+ margin:20px 0;
+ font-weight:900;
+}
+
+.hero p{
+ font-size:17px;
+ line-height:1.6;
+ color:#f0edff;
+ max-width:480px;
+}
+
+.hero-visual{
+ position:relative;
+ z-index:2;
+ animation:float 4s ease-in-out infinite;
+}
+
+.hero-visual img{
+ width:100%;
+ height:290px;
+ object-fit:cover;
+ border-radius:25px;
+ border:5px solid #ffffff55;
+ box-shadow:0 15px 40px #27205b40;
+}
+
+.floating{
+ position:absolute;
+ background:white;
+ color:var(--blue);
+ padding:12px 17px;
+ border-radius:15px;
+ font-weight:900;
+ box-shadow:0 8px 25px #0002;
+}
+
+.floating.one{top:-15px;left:-20px}
+.floating.two{bottom:-15px;right:-15px}
+
+.btn{
+ border:0;
+ padding:14px 23px;
+ border-radius:14px;
+ background:white;
+ color:var(--blue);
+ font-family:inherit;
+ font-size:15px;
+ font-weight:900;
+ cursor:pointer;
+ transition:.25s;
+ margin:5px;
+}
+
+.btn:hover{
+ transform:translateY(-4px);
+ box-shadow:0 9px 20px #0002;
+}
+
+.btn.primary{
+ background:linear-gradient(110deg,#5368bd,#9875d8);
+ color:white;
+}
+
+.btn.light{
+ background:#eceeff;
+ color:var(--blue);
+}
+
+.section-title{
+ text-align:center;
+ margin:55px 0 25px;
+}
+
+.section-title small{
+ color:var(--purple);
+ font-weight:900;
+ letter-spacing:2px;
+}
+
+.section-title h2{
+ font-size:32px;
+ margin:8px 0;
+}
+
+.section-title p{color:#777d99}
+
+.cards{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:18px;
+}
+
+.card{
+ background:white;
+ padding:22px;
+ border-radius:22px;
+ box-shadow:0 8px 30px #3036530b;
+ border:1px solid #efeffb;
+ transition:.3s;
+}
+
+.card:hover{
+ transform:translateY(-7px);
+ box-shadow:0 15px 35px #5368bd18;
+}
+
+.card .icon{
+ width:55px;
+ height:55px;
+ border-radius:17px;
+ display:grid;
+ place-items:center;
+ background:#eff0ff;
+ font-size:27px;
+ margin-bottom:15px;
+}
+
+.card h3{margin:5px 0 8px;color:var(--blue)}
+.card p{font-size:14px;line-height:1.6;color:#727791}
+
+.image-card{
+ padding:0;
+ overflow:hidden;
+}
+
+.image-card img{
+ width:100%;
+ height:175px;
+ object-fit:cover;
+ transition:.5s;
+}
+
+.image-card:hover img{transform:scale(1.06)}
+
+.image-card .inside{padding:19px}
+
+.slide{
+ background:white;
+ border-radius:28px;
+ overflow:hidden;
+ box-shadow:0 12px 40px #30365312;
+}
+
+.slide-top{
+ background:linear-gradient(120deg,#5368bd,#9271d4);
+ color:white;
+ padding:15px 25px;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ font-weight:900;
+}
+
+.progress{
+ height:7px;
+ background:#e7e8f5;
+}
+
+.progress div{
+ height:100%;
+ background:linear-gradient(90deg,#8170dc,#c08be9);
+ transition:width .5s;
+}
+
+.slide-content{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ min-height:360px;
+ align-items:center;
+}
+
+.slide-text{padding:35px}
+
+.slide-text .emoji{font-size:45px}
+
+.slide-text h2{
+ font-size:32px;
+ line-height:1.15;
+ color:var(--blue);
+ margin:15px 0;
+}
+
+.slide-text p{
+ color:#777d99;
+ line-height:1.7;
+ font-size:16px;
+}
+
+.slide-image{
+ width:100%;
+ height:360px;
+ object-fit:cover;
+}
+
+.pills{
+ display:flex;
+ flex-wrap:wrap;
+ gap:8px;
+ margin-top:20px;
+}
+
+.pill{
+ padding:8px 13px;
+ background:#eff0ff;
+ color:var(--blue);
+ border-radius:30px;
+ font-size:12px;
+ font-weight:900;
+}
+
+.actions{
+ display:flex;
+ justify-content:center;
+ flex-wrap:wrap;
+ padding:20px;
+ gap:8px;
+}
+
+.game-box{
+ background:white;
+ padding:30px;
+ border-radius:25px;
+ max-width:700px;
+ margin:25px auto;
+ box-shadow:0 10px 35px #30365312;
+}
+
+.game-top{
+ display:flex;
+ justify-content:space-between;
+ gap:10px;
+ color:var(--purple);
+ font-weight:900;
+}
+
+.question{
+ font-size:25px;
+ color:var(--blue);
+ margin:30px 0 20px;
+}
+
+.answer{
+ display:block;
+ width:100%;
+ text-align:left;
+ padding:17px;
+ border:2px solid #ededfa;
+ background:#f8f8ff;
+ border-radius:15px;
+ margin:10px 0;
+ font-family:inherit;
+ font-weight:800;
+ font-size:15px;
+ color:var(--dark);
+ cursor:pointer;
+ transition:.2s;
+}
+
+.answer:hover:not(:disabled){
+ background:#eeeeff;
+ border-color:#a49ae5;
+ transform:translateX(5px);
+}
+
+.answer.correct{
+ background:#e2f8ed;
+ border-color:#56bd8c;
+ color:#267b54;
+}
+
+.answer.wrong{
+ background:#fff0f0;
+ border-color:#e99b9b;
+ color:#a74c4c;
+}
+
+.answer:disabled{cursor:default}
+
+.feedback{
+ padding:16px;
+ border-radius:14px;
+ margin-top:18px;
+ background:#f0efff;
+ line-height:1.5;
+}
+
+input{
+ width:100%;
+ padding:15px;
+ border:2px solid #e4e5f5;
+ border-radius:13px;
+ font-family:inherit;
+ font-size:16px;
+ margin:15px 0;
+ outline:none;
+}
+
+input:focus{border-color:var(--purple)}
+
+.rank{
+ display:flex;
+ justify-content:space-between;
+ padding:15px;
+ border-bottom:1px solid #eee;
+ font-weight:800;
+}
+
+.rank:first-child{color:#a27a25}
+
+footer{
+ text-align:center;
+ padding:30px;
+ color:#888da7;
+ font-size:14px;
+}
+
+.hidden{display:none!important}
+
+@media(max-width:700px){
+ header{padding:12px 15px}
+ .logo{font-size:15px}
+ .nav button{font-size:12px;padding:8px}
+ main{padding:20px 12px 45px}
+ .hero{
+  grid-template-columns:1fr;
+  padding:35px 23px;
+  text-align:center;
+ }
+ .hero-visual img{height:220px}
+ .floating.one{left:0}
+ .floating.two{right:0}
+ .cards{grid-template-columns:1fr}
+ .slide-content{grid-template-columns:1fr}
+ .slide-image{height:220px;grid-row:1}
+ .slide-text{padding:25px}
+ .slide-text h2{font-size:27px}
+ .section-title h2{font-size:27px}
+ .game-box{padding:20px}
+ .question{font-size:21px}
+}
+
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{
+  animation-duration:.01ms!important;
+  transition-duration:.01ms!important;
+  scroll-behavior:auto!important;
+ }
+}
 </style>
 </head>
+
 <body>
-<header>💙 TODOS TENEMOS UN LUGAR</header>
+
+<header>
+ <div class="logo">💙 TODOS TENEMOS <span>UN LUGAR</span></div>
+ <div class="nav">
+  <button onclick="ir('inicio')">Inicio</button>
+  <button onclick="ir('presentacion')">Presentación</button>
+  <button onclick="ir('registro')">🎮 Quiz</button>
+ </div>
+</header>
+
 <main>
+
+<!-- INICIO -->
+
 <section id="inicio" class="active">
-<div class="hero"><div class="emoji">🤝💙</div>
-<h1>Discriminación a personas con necesidades especiales</h1>
-<p>Una presentación sobre el respeto, la igualdad de derechos y las oportunidades para todas las personas.</p>
-<button onclick="ir('presentacion')">Comenzar presentación</button>
-<button class="secondary" onclick="ir('registro')">Jugar al cuestionario 🎮</button></div>
-<div class="card"><h2>¿De qué vamos a hablar?</h2>
-<p>Vamos a conocer qué situaciones de discriminación enfrentan las personas con discapacidad y por qué es importante construir una sociedad más inclusiva.</p></div>
+
+<div class="hero">
+ <div class="hero-content">
+  <span class="tag">🌈 RESPETO · IGUALDAD · INCLUSIÓN</span>
+  <h1>Todos tenemos un lugar 💙</h1>
+  <p>Una sociedad donde las diferencias nos unen y todos tenemos las mismas oportunidades.</p>
+  <button class="btn" onclick="ir('presentacion')">Explorar presentación →</button>
+  <button class="btn" onclick="ir('registro')">Jugar al quiz 🎮</button>
+ </div>
+
+ <div class="hero-visual">
+  <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=85" alt="Grupo de personas compartiendo">
+  <div class="floating one">🤝 Inclusión</div>
+  <div class="floating two">💜 Igualdad</div>
+ </div>
+</div>
+
+<div class="section-title">
+ <small>CONOZCAMOS EL TEMA</small>
+ <h2>¿De qué vamos a hablar?</h2>
+ <p>Pequeñas acciones pueden generar grandes cambios.</p>
+</div>
+
+<div class="cards">
+ <div class="card">
+  <div class="icon">♿</div>
+  <h3>Discapacidad</h3>
+  <p>Conocer distintas situaciones y comprender que todos tenemos los mismos derechos.</p>
+ </div>
+
+ <div class="card">
+  <div class="icon">🚧</div>
+  <h3>Barreras sociales</h3>
+  <p>Identificar los obstáculos que dificultan la participación de algunas personas.</p>
+ </div>
+
+ <div class="card">
+  <div class="icon">💙</div>
+  <h3>Inclusión</h3>
+  <p>Construir espacios donde todas las personas puedan participar.</p>
+ </div>
+</div>
+
+<div class="section-title">
+ <small>UN MUNDO PARA TODOS</small>
+ <h2>Las diferencias nos enriquecen</h2>
+</div>
+
+<div class="card image-card">
+ <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=85" alt="Personas trabajando en equipo">
+ <div class="inside">
+  <h3>La inclusión empieza con el respeto.</h3>
+  <p>Todos merecemos oportunidades, respeto y la posibilidad de formar parte de la sociedad.</p>
+ </div>
+</div>
+
+<div class="actions">
+ <button class="btn primary" onclick="ir('presentacion')">Comenzar presentación →</button>
+</div>
+
 </section>
 
-<section id="presentacion"><div class="card">
-<p id="numero"></p><div class="progress"><div id="barra"></div></div>
-<div id="contenido"></div><div class="actions">
-<button class="secondary" onclick="anterior()">← Anterior</button>
-<button onclick="siguiente()">Siguiente →</button>
-<button class="secondary" onclick="ir('registro')">Ir al juego 🎮</button>
-</div></div></section>
+<!-- PRESENTACIÓN -->
 
-<section id="registro"><div class="hero"><div class="emoji">📱🎮</div>
-<h2>¡Hora de jugar!</h2><p>Escribí tu nombre y respondé las preguntas.</p></div>
-<div class="card"><label for="nombre">Tu nombre o apodo:</label>
-<input id="nombre" maxlength="24" placeholder="Escribí tu nombre">
-<button onclick="empezar()" style="width:100%">Empezar</button></div>
-<div class="actions"><button class="secondary" onclick="ir('ranking')">Ver ranking 🏆</button></div></section>
+<section id="presentacion">
 
-<section id="juego"><div class="card">
-<p id="contador"></p><div class="progress"><div id="barraPregunta"></div></div>
-<h2 id="pregunta"></h2><div id="opciones"></div>
-<div id="resultadoPregunta" class="feedback" hidden></div>
-<button id="continuar" onclick="continuar()" hidden>Siguiente →</button>
-</div></section>
+<div class="section-title">
+ <small>APRENDER Y REFLEXIONAR</small>
+ <h2>Nuestra presentación 💙</h2>
+ <p>9 temas para entender la importancia de incluir.</p>
+</div>
 
-<section id="final"><div class="hero"><div class="emoji">🏆✨</div>
-<h1>¡Terminaste!</h1><h2 id="mensajeFinal"></h2><p id="puntajeFinal"></p>
-<button onclick="ir('ranking')">Ver ranking de este celular</button>
-<button class="secondary" onclick="ir('registro')">Jugar otra vez</button></div></section>
+<div class="slide">
+ <div class="slide-top">
+  <span id="numero">DIAPOSITIVA 1 DE 9</span>
+  <span>💙 PRESENTACIÓN</span>
+ </div>
 
-<section id="ranking"><div class="hero"><div class="emoji">🏆</div>
-<h1>Ranking</h1><p>Resultados guardados en este dispositivo.</p></div>
-<div class="card" id="listaRanking"></div>
-<div class="actions"><button class="secondary" onclick="ir('inicio')">Volver al inicio</button>
-<button class="secondary" onclick="borrarRanking()">Borrar resultados</button></div></section>
+ <div class="progress"><div id="barra"></div></div>
+
+ <div class="slide-content">
+  <div class="slide-text" id="contenido"></div>
+  <img class="slide-image" id="imagenSlide" src="" alt="Imagen del tema">
+ </div>
+
+ <div class="actions">
+  <button class="btn light" onclick="anterior()">← Anterior</button>
+  <button class="btn primary" onclick="siguiente()">Siguiente →</button>
+  <button class="btn light" onclick="ir('registro')">🎮 Quiz</button>
+ </div>
+</div>
+
+</section>
+
+<!-- REGISTRO -->
+
+<section id="registro">
+
+<div class="section-title">
+ <small>DEMOSTRÁ LO QUE APRENDISTE</small>
+ <h2>¡Llegó la hora de jugar! 🎮</h2>
+ <p>8 preguntas para poner a prueba tus conocimientos.</p>
+</div>
+
+<div class="game-box" style="text-align:center">
+ <div style="font-size:65px;animation:float 3s infinite">🏆</div>
+ <h2 style="color:var(--blue)">¿Estás preparado?</h2>
+ <p>Respondé correctamente y sumá puntos.</p>
+ <label for="nombre"><b>¿Cómo te llamás?</b></label>
+ <input id="nombre" maxlength="24" placeholder="Escribí tu nombre o apodo">
+ <button class="btn primary" style="width:100%" onclick="empezar()">¡Empezar! 🚀</button>
+ <button class="btn light" onclick="ir('ranking')">🏆 Ver ranking</button>
+</div>
+
+</section>
+
+<!-- JUEGO -->
+
+<section id="juego">
+
+<div class="game-box">
+ <div class="game-top">
+  <span id="contador">PREGUNTA 1 DE 8</span>
+  <span id="marcador">⭐ 0 PTS</span>
+ </div>
+
+ <div class="progress" style="margin-top:15px">
+  <div id="barraPregunta"></div>
+ </div>
+
+ <h2 class="question" id="pregunta"></h2>
+ <div id="opciones"></div>
+
+ <div id="resultadoPregunta" class="feedback hidden"></div>
+
+ <div class="actions">
+  <button id="continuar" class="btn primary hidden" onclick="continuar()">Continuar →</button>
+ </div>
+</div>
+
+</section>
+
+<!-- FINAL -->
+
+<section id="final">
+
+<div class="game-box" style="text-align:center">
+ <div style="font-size:85px;animation:pulse 2s infinite">🏆</div>
+ <h1 style="color:var(--blue)">¡Lo lograste!</h1>
+ <h2 id="mensajeFinal"></h2>
+ <div style="background:#eff0ff;border-radius:20px;padding:25px;margin:20px 0">
+  <p style="font-weight:800">TU PUNTUACIÓN</p>
+  <h1 id="puntajeFinal" style="color:var(--purple);font-size:42px"></h1>
+ </div>
+ <p>¡Gracias por aprender sobre la inclusión! 💙</p>
+ <button class="btn primary" onclick="ir('ranking')">🏆 Ver ranking</button>
+ <button class="btn light" onclick="ir('registro')">Volver a jugar</button>
+</div>
+
+</section>
+
+<!-- RANKING -->
+
+<section id="ranking">
+
+<div class="section-title">
+ <small>LOS MEJORES RESULTADOS</small>
+ <h2>🏆 Ranking de jugadores</h2>
+ <p>Resultados guardados en este dispositivo.</p>
+</div>
+
+<div class="game-box" id="listaRanking"></div>
+
+<div class="actions">
+ <button class="btn light" onclick="ir('inicio')">← Volver al inicio</button>
+ <button class="btn light" onclick="borrarRanking()">Borrar resultados</button>
+</div>
+
+</section>
+
 </main>
-<footer>Hecho para aprender, respetar e incluir 💙</footer>
+
+<footer>
+ 💙 Hecho para aprender, respetar e incluir.
+ <br>Todos tenemos un lugar.
+</footer>
 
 <script>
-const diapositivas = [
-`<div class="emoji">💙</div><h2>1. ¿Qué significa aceptar la diversidad?</h2><p>Todas las personas tienen derecho a ser aceptadas tal como son. Cada persona es diferente y esas diferencias deben ser respetadas.</p>`,
-`<div class="emoji">♿</div><h2>2. Personas con discapacidad</h2><p>El texto explica que una discapacidad puede implicar una limitación o pérdida de habilidad para realizar determinadas actividades, como ver, oír o caminar.</p><p>Esto no significa que una persona tenga menos derechos o menos valor que otra.</p>`,
-`<div class="emoji">🚧</div><h2>3. Las barreras sociales</h2><p>Las dificultades no aparecen solamente por una discapacidad. También se producen por las barreras que existen en la sociedad y por la falta de preparación para incluir a todas las personas.</p><ul><li>Falta de accesibilidad.</li><li>Dificultades para conseguir trabajo.</li><li>Problemas para trasladarse.</li><li>Falta de integración social.</li></ul>`,
-`<div class="emoji">🌟</div><h2>4. Capacidades y posibilidades</h2><p>Las personas con discapacidad también pueden desarrollar distintas capacidades. Por ejemplo, algunas pueden aprovechar más los sentidos que tienen disponibles.</p><p>Es importante no definir a una persona solamente por sus limitaciones.</p>`,
-`<div class="emoji">🏠</div><h2>5. El impacto en las familias</h2><p>La discapacidad también puede afectar a las familias, tanto emocionalmente como económicamente.</p><p>Por eso es importante que existan apoyos y oportunidades para que las personas puedan desarrollar su vida con mayor independencia.</p>`,
-`<div class="emoji">⚖️</div><h2>6. Equiparación de oportunidades</h2><p>Significa hacer que los espacios y servicios sean accesibles para todas las personas.</p><ul><li>Vivienda y transporte.</li><li>Educación y trabajo.</li><li>Servicios sociales y sanitarios.</li><li>Cultura, deporte y recreación.</li></ul>`,
-`<div class="emoji">🤝</div><h2>7. ¿Quiénes ayudan a impulsar la inclusión?</h2><p>Las organizaciones no gubernamentales y las organizaciones que representan a las personas con discapacidad y sus familias impulsaron propuestas y medidas para mejorar sus derechos y oportunidades.</p>`,
-`<div class="emoji">🚌</div><h2>8. Una situación para reflexionar</h2><p>En el libro aparece el caso de una persona que usa muletas, sube al colectivo y cuenta que no consigue trabajo por su discapacidad. Después pide monedas.</p><p>Mariano se pregunta si darle dinero o ayudar de otra manera.</p><p>La situación nos invita a pensar cómo podemos ayudar respetando la dignidad y la autonomía de cada persona.</p>`,
-`<div class="emoji">💙</div><h2>9. Para terminar</h2><p>La inclusión no depende solamente de las personas con discapacidad. Es responsabilidad de toda la sociedad eliminar las barreras y garantizar que todos puedan participar.</p><h3>¡La diversidad nos enriquece y el respeto nos une!</h3><button onclick="ir('registro')">Jugar al cuestionario 🎮</button>`
+
+function ir(id){
+ document.querySelectorAll('main section').forEach(s=>s.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ window.scrollTo({top:0,behavior:'smooth'});
+ if(id==='ranking')mostrarRanking();
+}
+
+const diapositivas=[
+
+{
+emoji:'🌈',
+titulo:'Aceptar la diversidad',
+texto:'Todas las personas somos diferentes y esas diferencias merecen respeto. Nadie debe ser discriminado por ser quien es.',
+pills:['Respeto','Igualdad','Diversidad'],
+imagen:'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=85'
+},
+
+{
+emoji:'♿',
+titulo:'Personas con discapacidad',
+texto:'Una discapacidad puede afectar actividades como ver, oír o caminar. Pero nunca significa tener menos derechos o menos valor.',
+pills:['Derechos','Autonomía','Igualdad'],
+imagen:'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=900&q=85'
+},
+
+{
+emoji:'🚧',
+titulo:'Las barreras sociales',
+texto:'Muchas dificultades aparecen por los obstáculos que existen en la sociedad y no solamente por la discapacidad.',
+pills:['Accesibilidad','Transporte','Trabajo'],
+imagen:'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=900&q=85'
+},
+
+{
+emoji:'🌟',
+titulo:'Capacidades y posibilidades',
+texto:'Cada persona tiene habilidades diferentes. Es importante reconocer sus capacidades y no definirla solamente por sus limitaciones.',
+pills:['Talentos','Habilidades','Oportunidades'],
+imagen:'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=900&q=85'
+},
+
+{
+emoji:'🏠',
+titulo:'El impacto en las familias',
+texto:'La discapacidad también puede generar desafíos emocionales y económicos para las familias. El acompañamiento y el apoyo son fundamentales.',
+pills:['Familia','Acompañamiento','Apoyo'],
+imagen:'https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=900&q=85'
+},
+
+{
+emoji:'⚖️',
+titulo:'Igualdad de oportunidades',
+texto:'Significa que todos puedan acceder a la educación, el trabajo, el transporte, la cultura y la recreación.',
+pills:['Educación','Trabajo','Transporte'],
+imagen:'https://images.unsplash.com/photo-1529390079861-591de354faf5?auto=format&fit=crop&w=900&q=85'
+},
+
+{
+emoji:'🤝',
+titulo:'Organizaciones que ayudan',
+texto:'Las ONG y las organizaciones de personas con discapacidad y sus familias impulsan propuestas para defender derechos y promover la inclusión.',
+pills:['ONG','Participación','Derechos'],
+imagen:'https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&w=900&q=85'
+},
+
+{
+emoji:'🚌',
+titulo:'Una situación para reflexionar',
+texto:'Una persona que usa muletas no consigue trabajo y pide monedas. ¿Cómo podemos ayudar? Respetando su dignidad, sus decisiones y su autonomía.',
+pills:['Empatía','Respeto','Solidaridad'],
+imagen:'https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=900&q=85'
+},
+
+{
+emoji:'💙',
+titulo:'Todos tenemos un lugar',
+texto:'La inclusión es responsabilidad de toda la sociedad. Debemos eliminar las barreras y garantizar que todos puedan participar.',
+pills:['Incluir','Respetar','Compartir'],
+imagen:'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=900&q=85'
+}
+
 ];
+
 let diapositivaActual=0;
-function ir(id){document.querySelectorAll('main section').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);if(id==='ranking')mostrarRanking()}
-function mostrarDiapositiva(){document.getElementById('contenido').innerHTML=diapositivas[diapositivaActual];document.getElementById('numero').textContent=`DIAPOSITIVA ${diapositivaActual+1} DE ${diapositivas.length}`;document.getElementById('barra').style.width=((diapositivaActual+1)/diapositivas.length*100)+'%'}
-function siguiente(){if(diapositivaActual<diapositivas.length-1){diapositivaActual++;mostrarDiapositiva()}}
-function anterior(){if(diapositivaActual>0){diapositivaActual--;mostrarDiapositiva()}}
+
+function mostrarDiapositiva(){
+ let d=diapositivas[diapositivaActual];
+
+ document.getElementById('contenido').innerHTML=`
+ <div class="emoji">${d.emoji}</div>
+ <h2>${d.titulo}</h2>
+ <p>${d.texto}</p>
+ <div class="pills">
+ ${d.pills.map(x=>`<span class="pill">${x}</span>`).join('')}
+ </div>
+ `;
+
+ document.getElementById('imagenSlide').src=d.imagen;
+ document.getElementById('imagenSlide').alt=d.titulo;
+ document.getElementById('numero').textContent=
+ `DIAPOSITIVA ${diapositivaActual+1} DE ${diapositivas.length}`;
+
+ document.getElementById('barra').style.width=
+ ((diapositivaActual+1)/diapositivas.length*100)+'%';
+}
+
+function siguiente(){
+ if(diapositivaActual<diapositivas.length-1){
+  diapositivaActual++;
+  mostrarDiapositiva();
+ }else{
+  ir('registro');
+ }
+}
+
+function anterior(){
+ if(diapositivaActual>0){
+  diapositivaActual--;
+  mostrarDiapositiva();
+ }
+}
+
+// PREGUNTAS
+
 const preguntas=[
-{q:"¿Qué derecho tienen todas las personas?",a:["Ser aceptadas tal como son","Ser todas iguales","No participar en sociedad","Recibir siempre dinero"],c:0,e:"Todas las personas tienen derecho a ser aceptadas tal como son."},
-{q:"¿Qué puede dificultar la integración social?",a:["La amistad","Las barreras sociales","La diversidad","El respeto"],c:1,e:"Las barreras sociales y la falta de accesibilidad dificultan la integración."},
-{q:"¿Qué significa equiparación de oportunidades?",a:["Separar a las personas","Dar oportunidades a unos pocos","Hacer accesible la sociedad para todos","Evitar actividades culturales"],c:2,e:"Significa hacer accesibles los espacios y servicios para todos."},
-{q:"¿Cuál de estos ámbitos debe ser accesible?",a:["El transporte","Solo los estadios","Ninguno","Únicamente internet"],c:0,e:"El transporte es uno de los ámbitos mencionados en el texto."},
-{q:"¿Cómo puede afectar la discapacidad a las familias?",a:["Solo deportivamente","Emocional y económicamente","Nunca afecta","Solo en la escuela"],c:1,e:"El texto menciona el impacto emocional y económico."},
-{q:"¿Qué organizaciones impulsaron propuestas?",a:["Solo empresas","Clubes deportivos","ONG y organizaciones de personas con discapacidad y sus familias","Ninguna"],c:2,e:"El texto destaca a esas organizaciones."},
-{q:"¿Qué debemos hacer frente a la discriminación?",a:["Ignorarla","Respetar e incluir a las personas","Separar a las personas","Burlarnos"],c:1,e:"Debemos respetar los derechos y eliminar las barreras."},
-{q:"¿Qué es importante al ayudar a alguien?",a:["Respetar su dignidad y autonomía","Obligarlo a aceptar ayuda","Ignorarlo","Decidir siempre por esa persona"],c:0,e:"Ayudar también significa respetar las decisiones de la otra persona."}
+{
+q:'¿Qué derecho tienen todas las personas?',
+a:['Ser aceptadas tal como son','Ser todas iguales','No participar en sociedad','Recibir siempre dinero'],
+c:0,
+e:'Todas las personas tienen derecho a ser aceptadas y respetadas.'
+},
+{
+q:'¿Qué puede dificultar la integración social?',
+a:['La amistad','Las barreras sociales','La diversidad','El respeto'],
+c:1,
+e:'Las barreras sociales y la falta de accesibilidad dificultan la integración.'
+},
+{
+q:'¿Qué significa equiparación de oportunidades?',
+a:['Separar a las personas','Dar oportunidades a unos pocos','Hacer accesible la sociedad para todos','Evitar actividades culturales'],
+c:2,
+e:'Significa garantizar que todas las personas puedan acceder a los mismos espacios y servicios.'
+},
+{
+q:'¿Cuál de estos ámbitos debe ser accesible?',
+a:['El transporte','Solo los estadios','Ninguno','Únicamente internet'],
+c:0,
+e:'El transporte es uno de los ámbitos importantes para la inclusión.'
+},
+{
+q:'¿Cómo puede afectar la discapacidad a las familias?',
+a:['Solo deportivamente','Emocional y económicamente','Nunca afecta','Solo en la escuela'],
+c:1,
+e:'Puede generar desafíos emocionales y económicos.'
+},
+{
+q:'¿Qué organizaciones impulsaron propuestas de inclusión?',
+a:['Solo empresas','Clubes deportivos','ONG y organizaciones de personas con discapacidad y sus familias','Ninguna'],
+c:2,
+e:'Estas organizaciones trabajan para defender derechos y oportunidades.'
+},
+{
+q:'¿Qué debemos hacer frente a la discriminación?',
+a:['Ignorarla','Respetar e incluir a las personas','Separar a las personas','Burlarnos'],
+c:1,
+e:'Debemos respetar los derechos y eliminar las barreras.'
+},
+{
+q:'¿Qué es importante al ayudar a alguien?',
+a:['Respetar su dignidad y autonomía','Obligarlo a aceptar ayuda','Ignorarlo','Decidir siempre por esa persona'],
+c:0,
+e:'Ayudar también significa respetar las decisiones de la otra persona.'
+}
 ];
-let nombreJugador='',puntos=0,indice=0,respondida=false;
-function empezar(){nombreJugador=document.getElementById('nombre').value.trim();if(!nombreJugador){alert('Escribí tu nombre primero.');return}puntos=0;indice=0;mostrarPregunta();ir('juego')}
-function mostrarPregunta(){respondida=false;let p=preguntas[indice];document.getElementById('contador').textContent=`PREGUNTA ${indice+1} DE ${preguntas.length}`;document.getElementById('barraPregunta').style.width=((indice+1)/preguntas.length*100)+'%';document.getElementById('pregunta').textContent=p.q;document.getElementById('resultadoPregunta').hidden=true;document.getElementById('continuar').hidden=true;let opciones=document.getElementById('opciones');opciones.innerHTML='';p.a.forEach((respuesta,i)=>{let boton=document.createElement('button');boton.className='answer';boton.textContent=respuesta;boton.onclick=()=>responder(i);opciones.appendChild(boton)})}
-function responder(i){if(respondida)return;respondida=true;let p=preguntas[indice],correcto=i===p.c;if(correcto)puntos+=100;document.querySelectorAll('.answer').forEach(b=>b.disabled=true);let resultado=document.getElementById('resultadoPregunta');resultado.textContent=(correcto?'¡Correcto! +100 puntos. ':'No es correcto. ')+p.e;resultado.hidden=false;document.getElementById('continuar').hidden=false}
-function continuar(){indice++;if(indice<preguntas.length){mostrarPregunta()}else{guardarResultado();document.getElementById('mensajeFinal').textContent='¡Muy bien, '+nombreJugador+'!';document.getElementById('puntajeFinal').textContent='Conseguiste '+puntos+' de '+preguntas.length*100+' puntos.';ir('final')}}
-function obtenerResultados(){try{return JSON.parse(localStorage.getItem('rankingInclusion')||'[]')}catch(e){return []}}
-function guardarResultado(){let lista=obtenerResultados();lista.push({nombre:nombreJugador,puntos:puntos,fecha:new Date().toLocaleDateString('es-AR')});lista.sort((a,b)=>b.puntos-a.puntos);localStorage.setItem('rankingInclusion',JSON.stringify(lista.slice(0,100)))}
-function mostrarRanking(){let lista=obtenerResultados(),contenedor=document.getElementById('listaRanking');if(lista.length===0){contenedor.innerHTML='<p>Todavía no hay participantes en este celular.</p>';return}contenedor.innerHTML=lista.map((persona,i)=>`<div class="rank"><strong>${i+1}. ${escapar(persona.nombre)}</strong><strong>${persona.puntos} puntos</strong></div>`).join('')}
-function escapar(texto){return String(texto).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function borrarRanking(){if(confirm('¿Querés borrar todos los resultados de este celular?')){localStorage.removeItem('rankingInclusion');mostrarRanking()}}
+
+let nombreJugador='';
+let puntos=0;
+let indice=0;
+let respondida=false;
+
+function empezar(){
+ nombreJugador=document.getElementById('nombre').value.trim();
+
+ if(!nombreJugador){
+  alert('¡Escribí tu nombre primero!');
+  return;
+ }
+
+ puntos=0;
+ indice=0;
+ mostrarPregunta();
+ ir('juego');
+}
+
+function mostrarPregunta(){
+ respondida=false;
+
+ let p=preguntas[indice];
+
+ document.getElementById('contador').textContent=
+ `PREGUNTA ${indice+1} DE ${preguntas.length}`;
+
+ document.getElementById('marcador').textContent=`⭐ ${puntos} PTS`;
+
+ document.getElementById('barraPregunta').style.width=
+ ((indice+1)/preguntas.length*100)+'%';
+
+ document.getElementById('pregunta').textContent=p.q;
+
+ document.getElementById('resultadoPregunta').classList.add('hidden');
+ document.getElementById('continuar').classList.add('hidden');
+
+ let opciones=document.getElementById('opciones');
+ opciones.innerHTML='';
+
+ p.a.forEach((respuesta,i)=>{
+  let boton=document.createElement('button');
+  boton.className='answer';
+  boton.textContent=respuesta;
+  boton.onclick=()=>responder(i);
+  opciones.appendChild(boton);
+ });
+}
+
+function responder(i){
+ if(respondida)return;
+ respondida=true;
+
+ let p=preguntas[indice];
+ let correcto=i===p.c;
+
+ if(correcto)puntos+=100;
+
+ document.querySelectorAll('.answer').forEach((b,j)=>{
+  b.disabled=true;
+
+  if(j===p.c)b.classList.add('correct');
+  else if(j===i)b.classList.add('wrong');
+ });
+
+ let resultado=document.getElementById('resultadoPregunta');
+
+ resultado.innerHTML=
+ `<strong>${correcto?'🎉 ¡Correcto! +100 puntos':'💡 ¡A seguir aprendiendo!'}</strong><br>${p.e}`;
+
+ resultado.classList.remove('hidden');
+
+ document.getElementById('marcador').textContent=`⭐ ${puntos} PTS`;
+
+ document.getElementById('continuar').classList.remove('hidden');
+}
+
+function continuar(){
+ indice++;
+
+ if(indice<preguntas.length){
+  mostrarPregunta();
+ }else{
+  guardarResultado();
+
+  document.getElementById('mensajeFinal').textContent=
+  '¡Muy bien, '+nombreJugador+'!';
+
+  document.getElementById('puntajeFinal').textContent=
+  puntos+' / '+preguntas.length*100;
+
+  ir('final');
+ }
+}
+
+// RANKING
+
+function obtenerResultados(){
+ try{
+  return JSON.parse(localStorage.getItem('rankingInclusion')||'[]');
+ }catch(e){
+  return [];
+ }
+}
+
+function guardarResultado(){
+ let lista=obtenerResultados();
+
+ lista.push({
+  nombre:nombreJugador,
+  puntos:puntos,
+  fecha:new Date().toLocaleDateString('es-AR')
+ });
+
+ lista.sort((a,b)=>b.puntos-a.puntos);
+
+ localStorage.setItem(
+  'rankingInclusion',
+  JSON.stringify(lista.slice(0,100))
+ );
+}
+
+function escapar(texto){
+ return String(texto).replace(/[&<>"']/g,c=>({
+  '&':'&amp;',
+  '<':'&lt;',
+  '>':'&gt;',
+  '"':'&quot;',
+  "'":'&#39;'
+ }[c]));
+}
+
+function mostrarRanking(){
+ let lista=obtenerResultados();
+ let contenedor=document.getElementById('listaRanking');
+
+ if(lista.length===0){
+  contenedor.innerHTML='<p style="text-align:center">Todavía no hay participantes. ¡Sé el primero! 💙</p>';
+  return;
+ }
+
+ contenedor.innerHTML=lista.map((persona,i)=>`
+ <div class="rank">
+ <span>${['🥇','🥈','🥉'][i]||'⭐'} ${escapar(persona.nombre)}</span>
+ <span>${persona.puntos} pts</span>
+ </div>
+ `).join('');
+}
+
+function borrarRanking(){
+ if(confirm('¿Querés borrar todos los resultados?')){
+  localStorage.removeItem('rankingInclusion');
+  mostrarRanking();
+ }
+}
+
 mostrarDiapositiva();
+
 </script>
 </body>
 </html>
